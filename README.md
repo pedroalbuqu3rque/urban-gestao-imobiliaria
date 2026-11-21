@@ -1,4 +1,4 @@
-# URBAN — Gestão Imobiliária
+# URBAN - Gestão Imobiliária
 
 Aplicação web para organizar a operação de uma imobiliária: carteira de imóveis, clientes, negociações, contratos, equipe e indicadores em um mesmo ambiente.
 
@@ -106,8 +106,4 @@ tests/               Testes unitários e de navegador
 
 ## Publicação
 
-O projeto pode ser implantado na Vercel usando o preset **Next.js**. Configure as mesmas duas variáveis públicas da seção de instalação e registre o domínio de produção nos redirecionamentos do Supabase Auth.
-
-Não versione `.env.local`, credenciais de contas de QA, resultados de testes com dados pessoais ou chaves privilegiadas. A Edge Function usa a credencial de serviço disponível **no ambiente do Supabase**, nunca no cliente.
-
-Este repositório documenta um projeto de portfólio e não deve ser interpretado como um produto imobiliário homologado para uso comercial.
+Este repositório documenta um projeto de portfólio e não um produto imobiliário homologado para uso comercial.
