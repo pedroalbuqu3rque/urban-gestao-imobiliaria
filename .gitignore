@@ -1,0 +1,23 @@
+# Dependencies and build outputs
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+
+# Local configuration and credentials
+.env*
+!.env.example
+*.pem
+*.key
+
+# Test artifacts
+coverage/
+test-results/
+playwright-report/
+playwright/.cache/
+
+# Local editor and operating-system files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

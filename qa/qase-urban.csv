@@ -1,0 +1,61 @@
+﻿v2.id,title,description,priority,type,behavior,steps_type,steps_actions
+,UR-QA-01 · Cadastrar imóvel,Requisito UR-FR-01 · Prioridade P0,high,functional,positive,gherkin,"Given a imobiliária está ativa e o código QA-049 está livre
+When cadastro Apartamento Alameda com preço de 450000 na Rua das Acácias 204
+Then o imóvel aparece na carteira com o código QA-049 e continua disponível após recarregar"
+,UR-QA-02 · Indicar nome obrigatório,Requisito UR-FR-01 · Prioridade P1,medium,functional,negative,gherkin,"Given o formulário de cadastro de imóvel está aberto
+When preencho os demais campos obrigatórios e tento salvar sem nome
+Then o campo nome é indicado e a quantidade de imóveis permanece igual"
+,UR-QA-03 · Editar preço e disponibilidade,Requisito UR-FR-01 · Prioridade P1,medium,functional,positive,gherkin,"Given o imóvel QA-049 existe
+When altero o preço para 440000 e a disponibilidade para Reservado
+Then a ficha e a listagem exibem o novo preço e a nova disponibilidade"
+,UR-QA-04 · Buscar por código e endereço,Requisito UR-FR-01 · Prioridade P1,medium,functional,positive,gherkin,"Given o QA-049 fica na Rua das Acácias 204
+When pesquiso primeiro pelo código e depois por um trecho do endereço
+Then as duas consultas retornam o mesmo imóvel"
+,UR-QA-05 · Cadastrar interessado,Requisito UR-FR-02 · Prioridade P0,high,functional,positive,gherkin,"Given o e-mail helena@cliente.example está disponível para o teste
+When cadastro Helena Costa com interesse em compra
+Then a ficha da cliente é criada e pode ser selecionada na negociação"
+,UR-QA-06 · Vincular interessado ao imóvel,Requisito UR-FR-03 · Prioridade P0,high,functional,positive,gherkin,"Given Helena Costa e o QA-049 estão cadastrados
+When vinculo o QA-049 à cliente e consulto o histórico
+Then o vínculo preserva o código do imóvel e identifica a alteração na ficha da cliente"
+,UR-QA-07 · Aceitar convite como corretora,Requisito UR-FR-04 · Prioridade P1,medium,functional,positive,gherkin,"Given um administrador e uma conta nova de teste existem no Supabase
+When convido a conta para a equipe Venda residencial e aceito o convite com o mesmo e-mail
+Then a lista da equipe identifica a corretora ativa no grupo correto"
+,UR-QA-08 · Criar negociação vinculada,Requisito UR-FR-05 · Prioridade P0,high,functional,positive,gherkin,"Given Helena Costa e o QA-049 existem na carteira da corretora
+When abro uma negociação de venda pelos mesmos registros com valor 450000
+Then a oportunidade contém os vínculos corretos e começa em Em prospecção"
+,UR-QA-09 · Avançar uma etapa permitida,Requisito UR-FR-05 · Prioridade P1,medium,functional,positive,gherkin,"Given uma oportunidade está em Em prospecção
+When avanço para a próxima etapa e abro o histórico
+Then a etapa passa para Em atendimento e o histórico identifica a movimentação"
+,UR-QA-10 · Encerrar progressão em etapa final,Requisito UR-FR-05 · Prioridade P1,medium,functional,negative,gherkin,"Given uma negociação está Fechada
+When consulto as ações de movimentação disponíveis
+Then a negociação permanece Fechada e o controle permite apenas ações válidas para a etapa"
+,UR-QA-11 · Gerar contrato de venda,Requisito UR-FR-06 · Prioridade P0,high,functional,positive,gherkin,"Given a negociação de Helena pelo QA-049 está Fechada
+When emito o contrato com vendedor e data de início válidos
+Then cliente e imóvel e valor e responsável correspondem à negociação fechada"
+,UR-QA-12 · Recusar vigência invertida,Requisito UR-FR-06 · Prioridade P1,medium,functional,negative,gherkin,"Given uma negociação de locação está fechada
+When informo início em 01/12/2026 e término em 30/11/2026 e tento emitir
+Then o intervalo inválido é indicado e nenhum contrato é criado"
+,UR-QA-13 · Filtrar relatório,Requisito UR-FR-07 · Prioridade P1,medium,functional,positive,gherkin,"Given existem contratos com datas conhecidas dentro e fora de um intervalo
+When aplico o período e comparo o resumo com os registros correspondentes
+Then os totais por modalidade refletem somente o intervalo selecionado"
+,UR-QA-14 · Exibir relatório vazio,Requisito UR-FR-07 · Prioridade P2,low,functional,positive,gherkin,"Given o período de teste não contém operações
+When seleciono o intervalo sem movimento
+Then o sistema informa a ausência de registros e permite alterar o intervalo"
+,UR-QA-15 · Restringir administração ao papel correto,Requisito UR-FR-08 · Prioridade P0,high,functional,negative,gherkin,"Given um administrador e uma corretora pertencem à mesma imobiliária
+When entro como corretora e consulto os controles de convites e preferências
+Then as ações administrativas são inacessíveis à corretora"
+,UR-QA-16 · Concluir o fluxo em celular,Requisito UR-NFR-01 · Prioridade P1,medium,functional,positive,gherkin,"Given o navegador está em 390 por 844 pixels
+When abro o menu e cadastro um imóvel e volto à carteira
+Then os campos e o botão de salvar ficam alcançáveis sem rolagem horizontal da página"
+,UR-QA-17 · Impedir código duplicado na mesma conta,Requisito UR-FR-01 · Prioridade P1,medium,functional,negative,gherkin,"Given o QA-049 já existe na imobiliária
+When tento cadastrar outro imóvel com código qa-049
+Then o sistema recusa o código e mantém uma ocorrência"
+,UR-QA-18 · Separar carteiras de duas imobiliárias,Requisito UR-FR-08 · Prioridade P0,high,functional,positive,gherkin,"Given há duas imobiliárias de teste e duas sessões independentes
+When cadastro QA-049 em ambas e comparo os registros em cada sessão
+Then cada imobiliária conserva somente seus próprios imóveis e pode reutilizar o código da outra"
+,UR-QA-19 · Efetivar a venda,Requisito UR-FR-06 · Prioridade P1,medium,functional,positive,gherkin,"Given um contrato assinado está ligado ao QA-049
+When concluo a operação e consulto a ficha do imóvel
+Then o imóvel aparece como Vendido e a publicação é encerrada"
+,UR-QA-20 · Recusar aceite de convite incompatível,Requisito UR-FR-04 · Prioridade P1,medium,functional,negative,gherkin,"Given o convite de teste está emitido para o e-mail de Rita e ainda está válido
+When abro o link com outra conta de teste autenticada
+Then o convite é recusado e o outro usuário não é incluído na equipe"

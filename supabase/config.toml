@@ -1,0 +1,4 @@
+[functions.urban-workspace]
+verify_jwt = false
+entrypoint = "./functions/urban-workspace/index.ts"
+import_map = "./functions/urban-workspace/deno.json"
